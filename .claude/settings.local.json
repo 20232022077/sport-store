@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push *)",
+      "Bash(gh --version)",
+      "Bash(git remote *)",
+      "PowerShell(winget install --id GitHub.cli --silent 2>&1)",
+      "PowerShell(cmdkey /delete:git:https://github.com 2>&1)"
+    ]
+  }
+}
