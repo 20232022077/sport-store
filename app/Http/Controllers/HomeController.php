@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return "Hello from Controller";
+        return view('home.index');
     }
 
     public function test($id, $number)

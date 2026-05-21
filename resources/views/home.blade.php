@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>🏀 Welcome to Sport Store</h1>
+<h1> Welcome to Sport Store</h1>
 <p>First page is working successfully 🎉</p>
 
 @if (Route::has('login'))
