@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Admin Panel - Sport Store')</title>
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/admin.css') }}">
+    @yield('styles')
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+    @include('admin.sidebar')
+
+    <div class="admin-main">
+
+        @include('admin.header')
+
+        <div class="admin-content">
+            @yield('content')
+        </div>
+
+        @include('admin.footer')
+
+    </div>
+
+</div>
+
+<script src="{{ asset('assets/admin/dist/js/admin.js') }}"></script>
+@yield('scripts')
+
+</body>
+</html>
