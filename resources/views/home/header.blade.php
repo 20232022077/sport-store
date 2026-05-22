@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="logo">⚽ Sport Store</div>
+    <div class="logo"><i class="fa-solid fa-store"></i> Sport Store</div>
 
     <nav>
         <a href="{{ url('/') }}">Home</a>
@@ -10,10 +10,10 @@
 
     <div class="auth-links">
         @auth
-            <a href="{{ url('/dashboard') }}">Dashboard</a>
+            <a href="{{ url('/dashboard') }}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
         @else
-            <a href="{{ route('login') }}">Login</a>
-            <a href="{{ route('register') }}">Register</a>
+            <a href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <a href="{{ route('register') }}"><i class="fa-solid fa-user-plus"></i> Register</a>
         @endauth
     </div>
 </header>

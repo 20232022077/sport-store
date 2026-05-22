@@ -182,8 +182,9 @@ a { text-decoration: none; color: inherit; }
 }
 
 .card .icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 12px;
+    color: #f0a500;
 }
 
 .card h4 {

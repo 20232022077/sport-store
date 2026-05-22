@@ -14,28 +14,28 @@
     {{-- Stats Cards --}}
     <div class="stats-grid">
         <div class="stat-card blue">
-            <div class="stat-icon">📦</div>
+            <div class="stat-icon"><i class="fa-solid fa-box fa-lg"></i></div>
             <div class="stat-info">
                 <h3>248</h3>
                 <p>Total Products</p>
             </div>
         </div>
         <div class="stat-card green">
-            <div class="stat-icon">🛒</div>
+            <div class="stat-icon"><i class="fa-solid fa-cart-shopping fa-lg"></i></div>
             <div class="stat-info">
                 <h3>1340</h3>
                 <p>Total Orders</p>
             </div>
         </div>
         <div class="stat-card orange">
-            <div class="stat-icon">👥</div>
+            <div class="stat-icon"><i class="fa-solid fa-users fa-lg"></i></div>
             <div class="stat-info">
                 <h3>892</h3>
                 <p>Customers</p>
             </div>
         </div>
         <div class="stat-card red">
-            <div class="stat-icon">💰</div>
+            <div class="stat-icon"><i class="fa-solid fa-dollar-sign fa-lg"></i></div>
             <div class="stat-info">
                 <h3>54820</h3>
                 <p>Revenue ($)</p>
