@@ -40,7 +40,7 @@
                     <td>{{ $rs->image }}</td>
                     <td>{{ $rs->status }}</td>
                     <td>
-                        <a href="#" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
+                        <a href="/admin/category/edit/{{ $rs->id }}" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
                     </td>
                     <td>
                         <a href="#" style="background:#dc3545; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Delete</a>

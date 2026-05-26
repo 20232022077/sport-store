@@ -25,6 +25,8 @@ Route::get('/admin', [AdminHomeController::class, 'index']);
 Route::get('/admin/category', [CategoryController::class, 'index']);
 Route::get('/admin/category/create', [CategoryController::class, 'create']);
 Route::post('/admin/category/store', [CategoryController::class, 'store']);
+Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit']);
+Route::post('/admin/category/update/{id}', [CategoryController::class, 'update']);
 
 Route::middleware([
     'auth:sanctum',
