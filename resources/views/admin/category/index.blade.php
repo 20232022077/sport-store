@@ -1,15 +1,14 @@
 @extends('layouts.admin_base')
 
-@section('title', 'Categories - Admin Panel')
+@section('title', 'Category List')
 
-@section('page_title', 'Categories')
+@section('page_title', 'Category List')
 
 @section('content')
 
     <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
         <div>
-            <h2>Categories</h2>
-            <p>Manage all product categories</p>
+            <h2>Category List</h2>
         </div>
         <a href="/admin/category/create" style="background:#3b9eff; color:#fff; padding:10px 20px; border-radius:6px; font-weight:600; font-size:0.9rem;">
             + Add Category
@@ -17,44 +16,40 @@
     </div>
 
     <div class="table-card">
-        <h4>All Categories</h4>
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Title</th>
                     <th>Keywords</th>
+                    <th>Description</th>
+                    <th>Image</th>
                     <th>Status</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Show</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($categories as $category)
-                    <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->title }}</td>
-                        <td>{{ $category->keywords ?? '-' }}</td>
-                        <td>
-                            @if($category->status == 1)
-                                <span class="badge badge-success">Active</span>
-                            @else
-                                <span class="badge badge-danger">Inactive</span>
-                            @endif
-                        </td>
-                        <td>{{ $category->created_at->format('Y-m-d') }}</td>
-                        <td>
-                            <a href="#" style="color:#3b9eff; margin-right:10px;">Edit</a>
-                            <a href="#" style="color:#e74c3c;">Delete</a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" style="text-align:center; color:#999; padding:30px;">
-                            No categories found. <a href="/admin/category/create" style="color:#3b9eff;">Add one</a>.
-                        </td>
-                    </tr>
-                @endforelse
+                @foreach($data as $rs)
+                <tr>
+                    <td>{{ $rs->id }}</td>
+                    <td>{{ $rs->title }}</td>
+                    <td>{{ $rs->keywords }}</td>
+                    <td>{{ $rs->description }}</td>
+                    <td>{{ $rs->image }}</td>
+                    <td>{{ $rs->status }}</td>
+                    <td>
+                        <a href="#" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
+                    </td>
+                    <td>
+                        <a href="#" style="background:#dc3545; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Delete</a>
+                    </td>
+                    <td>
+                        <a href="#" style="background:#17a2b8; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Show</a>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -13,8 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->get();
-        return view('admin.category.index', compact('categories'));
+        $data = Category::all();
+
+        return view('admin.category.index', [
+            'data' => $data
+        ]);
     }
 
     public function create()
