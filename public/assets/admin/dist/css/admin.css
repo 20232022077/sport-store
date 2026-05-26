@@ -77,6 +77,38 @@ a { text-decoration: none; color: inherit; }
 
 .menu-item .icon { font-size: 1rem; width: 20px; text-align: center; }
 
+/* ===== DROPDOWN ===== */
+.menu-item.has-dropdown > a {
+    justify-content: flex-start;
+}
+
+.dropdown-arrow {
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.menu-item.has-dropdown .nav-treeview {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: #162030;
+}
+
+.menu-item.has-dropdown.menu-open .nav-treeview {
+    max-height: 200px;
+}
+
+.menu-item.has-dropdown.menu-open .dropdown-arrow {
+    transform: rotate(-90deg);
+}
+
+.nav-treeview .menu-item a {
+    padding-left: 40px;
+    font-size: 0.88rem;
+}
+
 /* ===== MAIN ===== */
 .admin-main {
     margin-left: 250px;
