@@ -15,15 +15,29 @@ class Category extends Model
         'status',
     ];
 
-    // A category has many child categories (subcategories)
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
 
-    // A category belongs to a parent category
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public static function getParentsTree($category, $title)
+    {
+        if ($category->parent_id == 0) {
+            return $title;
+        }
+
+        $parent = Category::find($category->parent_id);
+
+        if ($parent) {
+            $title = $parent->title . ' > ' . $title;
+            return self::getParentsTree($parent, $title);
+        }
+
+        return $title;
     }
 }

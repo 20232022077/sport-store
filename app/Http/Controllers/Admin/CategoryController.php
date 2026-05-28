@@ -23,7 +23,9 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.category.create');
+        $categories = Category::all();
+
+        return view('admin.category.create', ['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -38,6 +40,7 @@ class CategoryController extends Controller
         $data->keywords    = $request->input('keywords');
         $data->description = $request->input('description');
         $data->status      = $request->input('status');
+        $data->parent_id   = $request->input('parent_id', 0);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
@@ -61,10 +64,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = Category::find($id);
+        $data       = Category::find($id);
+        $categories = Category::all();
 
         return view('admin.category.edit', [
-            'data' => $data
+            'data'       => $data,
+            'categories' => $categories,
         ]);
     }
 
@@ -76,6 +81,7 @@ class CategoryController extends Controller
         $data->keywords    = $request->keywords;
         $data->description = $request->description;
         $data->status      = $request->status;
+        $data->parent_id   = $request->parent_id ?? 0;
 
         if ($request->hasFile('image')) {
             if ($data->image) {

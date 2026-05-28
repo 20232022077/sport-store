@@ -26,6 +26,19 @@
         <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
+            {{-- Parent Category --}}
+            <div style="margin-bottom:18px;">
+                <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Parent Category</label>
+                <select name="parent_id" style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; background:#fff; outline:none;">
+                    <option value="0">Main Category</option>
+                    @foreach($categories as $rs)
+                        <option value="{{ $rs->id }}">
+                            {{ \App\Models\Category::getParentsTree($rs, $rs->title) }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- Title --}}
             <div style="margin-bottom:18px;">
                 <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Title <span style="color:#e74c3c;">*</span></label>
