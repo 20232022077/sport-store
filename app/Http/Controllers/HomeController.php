@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        $products = Product::where('status', 1)->latest()->get();
+
+        return view('index', ['products' => $products]);
+    }
+
+    public function category($id)
+    {
+        $category = Category::find($id);
+        $products = Product::where('category_id', $id)->where('status', 1)->get();
+
+        return view('home.category', [
+            'category' => $category,
+            'products' => $products,
+        ]);
     }
 
     public function test($id, $number)

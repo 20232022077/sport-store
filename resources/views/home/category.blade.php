@@ -2,18 +2,21 @@
 
 @php use Illuminate\Support\Facades\Storage; @endphp
 
-@section('title', 'Sport Store - Home')
-
-@section('sliders')
-    @include('home.sliders')
-@endsection
+@section('title', $category->title . ' - Sport Store')
 
 @section('content')
 
-    <h2 class="section-title">All Products</h2>
+    {{-- Breadcrumb --}}
+    <div class="breadcrumb">
+        <a href="{{ route('home') }}">Home</a>
+        <span> &rsaquo; </span>
+        <span>{{ \App\Models\Category::getParentsTree($category, $category->title) }}</span>
+    </div>
+
+    <h2 class="section-title">{{ $category->title }}</h2>
 
     @if($products->isEmpty())
-        <p style="color:#888; padding:20px 0;">No products available yet.</p>
+        <p style="color:#888; padding:20px 0;">No products found in this category.</p>
     @else
         <div class="cards-grid">
             @foreach($products as $product)

@@ -204,6 +204,30 @@ a { text-decoration: none; color: inherit; }
     font-size: 1.1rem;
 }
 
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: #f0a500;
+}
+
+.breadcrumb a:hover { text-decoration: underline; }
+
+.breadcrumb span { margin: 0 4px; }
+
+/* ===== CARD IMAGE ===== */
+.card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
 /* ===== FOOTER ===== */
 .footer {
     background: #1a1a2e;
