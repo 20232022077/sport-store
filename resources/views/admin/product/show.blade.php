@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td style="font-weight:600; color:#1e2a3b;">Category</td>
-                    <td>{{ $data->category ? $data->category->title : '—' }}</td>
+                    <td>{{ $data->category ? \App\Models\Category::getParentsTree($data->category, $data->category->title) : '—' }}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:600; color:#1e2a3b;">Title</td>
