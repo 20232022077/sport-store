@@ -21,13 +21,19 @@ Route::post('/save', [HomeController::class, 'save']);
 
 Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.index');
 
-// Category Routes
-Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
-Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
-Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
-Route::get('/admin/category/show/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
-Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
-Route::post('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::prefix('category')->name('category.')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'destroy')->name('delete');
+    });
+
+});
 
 // Placeholder routes
 Route::get('/admin/users', function () { return redirect()->route('admin.index'); })->name('admin.users.index');

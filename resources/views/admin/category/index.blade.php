@@ -10,7 +10,7 @@
         <div>
             <h2>Category List</h2>
         </div>
-        <a href="/admin/category/create" style="background:#3b9eff; color:#fff; padding:10px 20px; border-radius:6px; font-weight:600; font-size:0.9rem;">
+        <a href="{{ route('admin.category.create') }}" style="background:#3b9eff; color:#fff; padding:10px 20px; border-radius:6px; font-weight:600; font-size:0.9rem;">
             + Add Category
         </a>
     </div>
@@ -40,13 +40,13 @@
                     <td>{{ $rs->image }}</td>
                     <td>{{ $rs->status }}</td>
                     <td>
-                        <a href="/admin/category/edit/{{ $rs->id }}" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
+                        <a href="{{ route('admin.category.edit', ['id' => $rs->id]) }}" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
                     </td>
                     <td>
-                        <a href="#" style="background:#dc3545; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Delete</a>
+                        <a href="{{ route('admin.category.delete', ['id' => $rs->id]) }}" style="background:#dc3545; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Delete</a>
                     </td>
                     <td>
-                        <a href="/admin/category/show/{{ $rs->id }}" style="background:#17a2b8; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Show</a>
+                        <a href="{{ route('admin.category.show', ['id' => $rs->id]) }}" style="background:#17a2b8; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Show</a>
                     </td>
                 </tr>
                 @endforeach

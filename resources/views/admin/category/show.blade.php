@@ -53,15 +53,15 @@
         </table>
 
         <div style="display:flex; gap:12px; margin-top:20px; padding-top:16px; border-top:2px solid #f0f2f5;">
-            <a href="/admin/category/edit/{{ $data->id }}"
+            <a href="{{ route('admin.category.edit', ['id' => $data->id]) }}"
                style="background:#28a745; color:#fff; padding:10px 24px; border-radius:6px; font-weight:600; font-size:0.9rem;">
                 <i class="fa-solid fa-pen"></i> Edit
             </a>
-            <a href="#"
+            <a href="{{ route('admin.category.delete', ['id' => $data->id]) }}"
                style="background:#dc3545; color:#fff; padding:10px 24px; border-radius:6px; font-weight:600; font-size:0.9rem;">
                 <i class="fa-solid fa-trash"></i> Delete
             </a>
-            <a href="/admin/category"
+            <a href="{{ route('admin.category.index') }}"
                style="background:#f0f2f5; color:#555; padding:10px 22px; border-radius:6px; font-weight:600; font-size:0.9rem;">
                 Back
             </a>

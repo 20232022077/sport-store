@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $data->status      = $request->input('status');
         $data->save();
 
-        return redirect('/admin/category')->with('success', 'Category added successfully.');
+        return redirect()->route('admin.category.index')->with('success', 'Category added successfully.');
     }
 
     public function show($id)
@@ -72,7 +72,7 @@ class CategoryController extends Controller
 
         $data->save();
 
-        return redirect('/admin/category');
+        return redirect()->route('admin.category.index');
     }
 
     /**

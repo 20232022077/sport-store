@@ -12,7 +12,7 @@
 
     <div class="table-card" style="max-width:700px;">
 
-        <form action="/admin/category/update/{{ $data->id }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.category.update', ['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             {{-- Title --}}
@@ -71,7 +71,7 @@
                 <button type="submit" style="background:#28a745; color:#fff; padding:11px 28px; border:none; border-radius:6px; font-weight:600; font-size:0.95rem; cursor:pointer;">
                     Update
                 </button>
-                <a href="/admin/category" style="background:#f0f2f5; color:#555; padding:11px 22px; border-radius:6px; font-weight:600; font-size:0.95rem;">
+                <a href="{{ route('admin.category.index') }}" style="background:#f0f2f5; color:#555; padding:11px 22px; border-radius:6px; font-weight:600; font-size:0.95rem;">
                     Cancel
                 </a>
             </div>

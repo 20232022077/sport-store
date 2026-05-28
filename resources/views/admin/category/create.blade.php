@@ -23,7 +23,7 @@
             </div>
         @endif
 
-        <form action="/admin/category/store" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             {{-- Title --}}
@@ -84,7 +84,7 @@
                 <button type="submit" style="background:#3b9eff; color:#fff; padding:11px 28px; border:none; border-radius:6px; font-weight:600; font-size:0.95rem; cursor:pointer;">
                     Save Category
                 </button>
-                <a href="/admin/category" style="background:#f0f2f5; color:#555; padding:11px 22px; border-radius:6px; font-weight:600; font-size:0.95rem;">
+                <a href="{{ route('admin.category.index') }}" style="background:#f0f2f5; color:#555; padding:11px 22px; border-radius:6px; font-weight:600; font-size:0.95rem;">
                     Cancel
                 </a>
             </div>
