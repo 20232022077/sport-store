@@ -1,4 +1,5 @@
 *.log
+/.local-settings
 .DS_Store
 .env
 .env.backup
