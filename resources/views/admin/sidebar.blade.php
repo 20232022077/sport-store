@@ -18,8 +18,8 @@
         <div class="menu-label">Catalog</div>
 
         {{-- Products --}}
-        <div class="menu-item">
-            <a href="#">
+        <div class="menu-item {{ request()->routeIs('admin.product.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.product.index') }}">
                 <span class="icon"><i class="fa-solid fa-box"></i></span> Products
             </a>
         </div>
