@@ -42,12 +42,11 @@ class CategoryController extends Controller
         return redirect('/admin/category')->with('success', 'Category added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $data = Category::find($id);
+
+        return view('admin.category.show', ['data' => $data]);
     }
 
     /**

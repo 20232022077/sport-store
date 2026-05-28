@@ -46,7 +46,7 @@
                         <a href="#" style="background:#dc3545; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Delete</a>
                     </td>
                     <td>
-                        <a href="#" style="background:#17a2b8; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Show</a>
+                        <a href="/admin/category/show/{{ $rs->id }}" style="background:#17a2b8; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Show</a>
                     </td>
                 </tr>
                 @endforeach
