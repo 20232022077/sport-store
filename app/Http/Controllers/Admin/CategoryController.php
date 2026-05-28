@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -37,6 +38,12 @@ class CategoryController extends Controller
         $data->keywords    = $request->input('keywords');
         $data->description = $request->input('description');
         $data->status      = $request->input('status');
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $data->image = $path;
+        }
+
         $data->save();
 
         return redirect()->route('admin.category.index')->with('success', 'Category added successfully.');
@@ -70,16 +77,29 @@ class CategoryController extends Controller
         $data->description = $request->description;
         $data->status      = $request->status;
 
+        if ($request->hasFile('image')) {
+            if ($data->image) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $path = $request->file('image')->store('images', 'public');
+            $data->image = $path;
+        }
+
         $data->save();
 
         return redirect()->route('admin.category.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $data = Category::find($id);
+
+        if ($data->image) {
+            Storage::disk('public')->delete($data->image);
+        }
+
+        $data->delete();
+
+        return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully.');
     }
 }

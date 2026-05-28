@@ -1,5 +1,7 @@
 @extends('layouts.admin_base')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
 @section('title', 'Category Details')
 
 @section('page_title', 'Category Details')
@@ -38,6 +40,16 @@
                             <span class="badge badge-success">Active</span>
                         @else
                             <span class="badge badge-danger">Inactive</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600; color:#1e2a3b;">Image</td>
+                    <td>
+                        @if($data->image)
+                            <img src="{{ Storage::url($data->image) }}" width="80" height="80" style="border-radius:6px; object-fit:cover;">
+                        @else
+                            No image
                         @endif
                     </td>
                 </tr>

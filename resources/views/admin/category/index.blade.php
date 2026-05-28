@@ -2,6 +2,8 @@
 
 @section('title', 'Category List')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
 @section('page_title', 'Category List')
 
 @section('content')
@@ -37,7 +39,13 @@
                     <td>{{ $rs->title }}</td>
                     <td>{{ $rs->keywords }}</td>
                     <td>{{ $rs->description }}</td>
-                    <td>{{ $rs->image }}</td>
+                    <td>
+                        @if($rs->image)
+                            <img src="{{ Storage::url($rs->image) }}" width="40" height="40" style="border-radius:4px; object-fit:cover;">
+                        @else
+                            —
+                        @endif
+                    </td>
                     <td>{{ $rs->status }}</td>
                     <td>
                         <a href="{{ route('admin.category.edit', ['id' => $rs->id]) }}" style="background:#28a745; color:#fff; padding:5px 12px; border-radius:4px; font-size:0.85rem;">Edit</a>
