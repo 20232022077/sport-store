@@ -4,7 +4,7 @@
 <div class="slider">
     <h2>{{ $rs->title }}</h2>
     <p>${{ number_format($rs->price, 2) }}</p>
-    <a href="{{ route('category.products', $rs->category_id ?: 0) }}" class="btn">Shop Now</a>
+    <a href="{{ route('product', ['id' => $rs->id]) }}" class="btn">Shop Now</a>
 </div>
 @endforeach
 

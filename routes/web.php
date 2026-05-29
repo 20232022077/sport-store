@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('category.products');
+Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
 
 Route::get('/welcome', function () {
     return view('welcome');

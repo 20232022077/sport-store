@@ -17,6 +17,7 @@
     @else
         <div class="cards-grid">
             @foreach($productlist1 as $rs)
+                <a href="{{ route('product', ['id' => $rs->id]) }}" style="text-decoration:none; color:inherit;">
                 <div class="card">
                     @if($rs->image)
                         <img src="{{ Storage::url($rs->image) }}" alt="{{ $rs->title }}" class="card-img">
@@ -32,6 +33,7 @@
                         </span>
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
     @endif
