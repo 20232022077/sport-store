@@ -10,10 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products      = Product::where('status', 1)->latest()->get();
         $productslider = Product::limit(5)->get();
+        $productlist1  = Product::limit(6)->get();
 
-        return view('index', compact('products', 'productslider'));
+        return view('index', compact('productslider', 'productlist1'));
     }
 
     public function category($id)
