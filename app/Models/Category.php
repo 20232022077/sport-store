@@ -30,6 +30,11 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    public static function mainCategories()
+    {
+        return Category::where('parent_id', 0)->where('status', 1)->get();
+    }
+
     public static function getParentsTree($category, $title)
     {
         if ($category->parent_id == 0) {

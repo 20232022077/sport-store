@@ -94,6 +94,23 @@ a { text-decoration: none; color: inherit; }
     color: #fff;
 }
 
+.sidebar .sub-menu {
+    list-style: none;
+    padding-left: 16px;
+    margin-top: 2px;
+}
+
+.sidebar .sub-menu li a {
+    font-size: 0.88rem;
+    padding: 7px 12px;
+    color: #777;
+}
+
+.sidebar .sub-menu li a:hover {
+    background: #f0a500;
+    color: #fff;
+}
+
 /* ===== MAIN CONTENT ===== */
 .main-content {
     flex: 1;

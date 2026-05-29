@@ -1,16 +1,11 @@
 <aside class="sidebar">
     <h3>Categories</h3>
-    <ul>
-        @foreach($categories as $cat)
-            <li>
-                <a href="{{ route('category.products', $cat->id) }}">
-                    <i class="fa-solid fa-tag"></i>
-                    {{ \App\Models\Category::getParentsTree($cat, $cat->title) }}
-                </a>
-            </li>
-        @endforeach
-        @if($categories->isEmpty())
+    <ul class="category-menu">
+        @php $mainCategories = \App\Models\Category::mainCategories(); @endphp
+        @if($mainCategories->isEmpty())
             <li><a href="#"><i class="fa-solid fa-tag"></i> No categories yet</a></li>
+        @else
+            @include('home.category_tree', ['categories' => $mainCategories])
         @endif
     </ul>
 
