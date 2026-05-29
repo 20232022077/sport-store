@@ -2,28 +2,30 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Auto-rotate slider text
-    const sliderMessages = [
-        { title: 'Welcome to Sport Store', sub: 'Best sports equipment for every athlete' },
-        { title: 'New Season Collection', sub: 'Discover the latest gear for 2025' },
-        { title: 'Exclusive Offers', sub: 'Up to 40% off on selected items' },
-    ];
+    // Dynamic product slider
+    const slides = document.querySelectorAll('.slider');
 
-    const sliderTitle = document.querySelector('.slider h2');
-    const sliderSub   = document.querySelector('.slider p');
+    if (slides.length > 1) {
+        let current = 0;
 
-    if (sliderTitle && sliderSub) {
-        let index = 0;
+        slides.forEach(function (slide, i) {
+            slide.style.transition = 'opacity 0.4s ease';
+            if (i > 0) {
+                slide.style.display = 'none';
+                slide.style.opacity = '0';
+            }
+        });
+
         setInterval(function () {
-            index = (index + 1) % sliderMessages.length;
-            sliderTitle.style.opacity = '0';
-            sliderSub.style.opacity   = '0';
+            slides[current].style.opacity = '0';
             setTimeout(function () {
-                sliderTitle.textContent  = sliderMessages[index].title;
-                sliderSub.textContent    = sliderMessages[index].sub;
-                sliderTitle.style.opacity = '1';
-                sliderSub.style.opacity   = '1';
-            }, 300);
+                slides[current].style.display = 'none';
+                current = (current + 1) % slides.length;
+                slides[current].style.display = 'block';
+                setTimeout(function () {
+                    slides[current].style.opacity = '1';
+                }, 10);
+            }, 400);
         }, 3500);
     }
 
@@ -34,4 +36,5 @@ document.addEventListener('DOMContentLoaded', function () {
             link.style.color = '#f0a500';
         }
     });
+
 });
