@@ -18,29 +18,53 @@
         <div style="flex:1; min-width:280px; background:#fff; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
             <h3 style="color:#1a1a2e; margin-bottom:20px; font-size:1.1rem;">Send a Message</h3>
 
-            <form>
+            @if(session('success'))
+                <div style="background:#eafaf1; border:1px solid #2ecc71; border-radius:6px; padding:12px 16px; margin-bottom:20px; color:#27ae60; font-size:0.9rem;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div style="background:#fdedec; border:1px solid #e74c3c; border-radius:6px; padding:12px 16px; margin-bottom:20px;">
+                    <ul style="margin:0; padding-left:18px; color:#e74c3c; font-size:0.9rem;">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('storemessage') }}" method="POST">
+                @csrf
+
                 <div style="margin-bottom:16px;">
-                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Full Name</label>
-                    <input type="text" placeholder="Your name"
+                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Full Name <span style="color:#e74c3c;">*</span></label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Your name"
                         style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; box-sizing:border-box;">
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Email</label>
-                    <input type="email" placeholder="Your email"
+                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Email <span style="color:#e74c3c;">*</span></label>
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Your email"
                         style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; box-sizing:border-box;">
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Subject</label>
-                    <input type="text" placeholder="Subject"
+                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Phone</label>
+                    <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Your phone"
+                        style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; box-sizing:border-box;">
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Subject <span style="color:#e74c3c;">*</span></label>
+                    <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject"
                         style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; box-sizing:border-box;">
                 </div>
 
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Message</label>
-                    <textarea rows="5" placeholder="Your message..."
-                        style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical; box-sizing:border-box;"></textarea>
+                    <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Message <span style="color:#e74c3c;">*</span></label>
+                    <textarea name="message" rows="5" placeholder="Your message..."
+                        style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical; box-sizing:border-box;">{{ old('message') }}</textarea>
                 </div>
 
                 <button type="submit"
@@ -80,10 +104,6 @@
                     <i class="fa-solid fa-fax" style="color:#f0a500;"></i>
                     <span>{{ $setting->fax }}</span>
                 </div>
-            @endif
-
-            @if(!$setting?->address && !$setting?->phone && !$setting?->email)
-                <p style="color:#888; font-size:0.9rem;">Contact details will appear here once added in settings.</p>
             @endif
         </div>
 

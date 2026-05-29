@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -50,6 +51,28 @@ class HomeController extends Controller
             'category' => $category,
             'products' => $products,
         ]);
+    }
+
+    public function storemessage(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        $msg             = new Message();
+        $msg->name       = $request->name;
+        $msg->email      = $request->email;
+        $msg->phone      = $request->phone;
+        $msg->subject    = $request->subject;
+        $msg->message    = $request->message;
+        $msg->ip_address = request()->ip();
+        $msg->status     = 0;
+        $msg->save();
+
+        return redirect()->back()->with('success', 'Message sent successfully.');
     }
 
     public function about()

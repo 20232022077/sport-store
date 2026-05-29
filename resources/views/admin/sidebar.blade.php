@@ -40,6 +40,13 @@
             </a>
         </div>
 
+        {{-- Messages --}}
+        <div class="menu-item {{ request()->routeIs('admin.message.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.message.index') }}">
+                <span class="icon"><i class="fa-solid fa-envelope"></i></span> Messages
+            </a>
+        </div>
+
         {{-- Users --}}
         <div class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
             <a href="{{ route('admin.users.index') }}">

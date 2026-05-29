@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('subject');
             $table->text('message');
+            $table->string('ip_address')->nullable();
+            $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
