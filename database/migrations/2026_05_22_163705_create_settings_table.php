@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('fax')->nullable();
             $table->string('icon')->nullable();
+            $table->longText('aboutus')->nullable();
+            $table->longText('references')->nullable();
             $table->timestamps();
         });
     }

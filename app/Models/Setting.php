@@ -16,5 +16,7 @@ class Setting extends Model
         'email',
         'fax',
         'icon',
+        'aboutus',
+        'references',
     ];
 }

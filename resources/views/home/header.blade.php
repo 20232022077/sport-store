@@ -2,10 +2,10 @@
     <div class="logo"><i class="fa-solid fa-store"></i> {{ $setting?->title ?? 'Sport Store' }}</div>
 
     <nav>
-        <a href="{{ url('/') }}">Home</a>
-        <a href="{{ url('/home') }}">About</a>
-        <a href="#">Products</a>
-        <a href="#">Offers</a>
+        <a href="{{ route('home') }}">Home</a>
+        <a href="{{ route('about') }}">About</a>
+        <a href="{{ route('references') }}">References</a>
+        <a href="{{ route('contact') }}">Contact</a>
     </nav>
 
     <div class="auth-links">

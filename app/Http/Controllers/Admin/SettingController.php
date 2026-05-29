@@ -44,6 +44,8 @@ class SettingController extends Controller
         $setting->phone       = $request->phone;
         $setting->email       = $request->email;
         $setting->fax         = $request->fax;
+        $setting->aboutus     = $request->aboutus;
+        $setting->references  = $request->references;
 
         if ($request->hasFile('icon')) {
             if ($setting->icon) {

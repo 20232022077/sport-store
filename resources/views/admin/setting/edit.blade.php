@@ -6,6 +6,10 @@
 
 @section('page_title', 'Site Settings')
 
+@section('head')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 
     <div class="page-header">
@@ -23,6 +27,8 @@
     <div style="margin-bottom:20px; border-bottom:2px solid #e0e8f0; display:flex; gap:4px;">
         <button onclick="showTab('general')" id="tab-general" class="tab-btn active-tab">General</button>
         <button onclick="showTab('contact')" id="tab-contact" class="tab-btn">Contact</button>
+        <button onclick="showTab('aboutus')" id="tab-aboutus" class="tab-btn">About Us</button>
+        <button onclick="showTab('references')" id="tab-references" class="tab-btn">References</button>
         <button onclick="showTab('icon')" id="tab-icon" class="tab-btn">Icon</button>
     </div>
 
@@ -88,6 +94,28 @@
 
         </div>
 
+        {{-- About Us Tab --}}
+        <div id="panel-aboutus" class="table-card" style="max-width:700px; display:none;">
+
+            <div style="margin-bottom:18px;">
+                <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">About Us Content</label>
+                <textarea name="aboutus" id="aboutus" rows="10"
+                    style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical;">{!! $setting->aboutus !!}</textarea>
+            </div>
+
+        </div>
+
+        {{-- References Tab --}}
+        <div id="panel-references" class="table-card" style="max-width:700px; display:none;">
+
+            <div style="margin-bottom:18px;">
+                <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">References Content</label>
+                <textarea name="references" id="references" rows="10"
+                    style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical;">{!! $setting->references !!}</textarea>
+            </div>
+
+        </div>
+
         {{-- Icon Tab --}}
         <div id="panel-icon" class="table-card" style="max-width:700px; display:none;">
 
@@ -127,19 +155,20 @@
         cursor: pointer;
         transition: background 0.2s, color 0.2s;
     }
-    .active-tab {
-        background: #3b9eff;
-        color: #fff;
-    }
+    .active-tab { background: #3b9eff; color: #fff; }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
     function showTab(name) {
-        ['general','contact','icon'].forEach(function(t) {
+        ['general','contact','aboutus','references','icon'].forEach(function(t) {
             document.getElementById('panel-' + t).style.display = 'none';
             document.getElementById('tab-' + t).classList.remove('active-tab');
         });
         document.getElementById('panel-' + name).style.display = 'block';
         document.getElementById('tab-' + name).classList.add('active-tab');
     }
+    $('#aboutus').summernote({ height: 300 });
+    $('#references').summernote({ height: 300 });
 </script>
 @endsection
