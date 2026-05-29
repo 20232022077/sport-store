@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="logo"><i class="fa-solid fa-store"></i> Sport Store</div>
+    <div class="logo"><i class="fa-solid fa-store"></i> {{ $setting?->title ?? 'Sport Store' }}</div>
 
     <nav>
         <a href="{{ url('/') }}">Home</a>

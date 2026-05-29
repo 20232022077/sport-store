@@ -71,8 +71,8 @@
         </div>
 
         {{-- Settings --}}
-        <div class="menu-item">
-            <a href="#">
+        <div class="menu-item {{ request()->routeIs('admin.setting.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.setting.edit') }}">
                 <span class="icon"><i class="fa-solid fa-gear"></i></span> Settings
             </a>
         </div>

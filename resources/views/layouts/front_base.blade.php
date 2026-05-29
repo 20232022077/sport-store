@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Sport Store')</title>
+    <title>@yield('title', $setting?->title ?? 'Sport Store')</title>
+    <meta name="keywords" content="{{ $setting?->keywords }}">
+    <meta name="description" content="{{ $setting?->description }}">
+    @if($setting?->icon)
+        <link rel="icon" href="{{ \Illuminate\Support\Facades\Storage::url($setting->icon) }}">
+    @endif
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @yield('styles')
