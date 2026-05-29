@@ -1,6 +1,6 @@
 @foreach($categories as $rs)
     <li>
-        <a href="{{ route('category.products', ['id' => $rs->id]) }}">
+        <a href="{{ route('categoryproducts', ['id' => $rs->id, 'slug' => $rs->title]) }}">
             <i class="fa-solid fa-tag"></i> {{ $rs->title }}
         </a>
 

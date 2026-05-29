@@ -29,6 +29,17 @@ class HomeController extends Controller
         ]);
     }
 
+    public function categoryproducts($id, $slug)
+    {
+        $category = Category::find($id);
+        $products = Product::where('category_id', $id)->get();
+
+        return view('home.category_products', [
+            'category' => $category,
+            'products' => $products,
+        ]);
+    }
+
     public function category($id)
     {
         $category = Category::find($id);
