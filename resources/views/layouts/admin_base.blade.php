@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/admin.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @yield('styles')
+    @yield('head')
 </head>
 <body>
 
@@ -30,6 +31,7 @@
 
 <script src="{{ asset('assets/admin/dist/js/admin.js') }}"></script>
 @yield('scripts')
+@yield('footer')
 
 </body>
 </html>

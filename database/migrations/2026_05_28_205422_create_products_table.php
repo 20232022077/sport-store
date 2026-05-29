@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('minquantity')->default(0);
             $table->float('tax')->default(0);
             $table->tinyInteger('status')->default(1);
+            $table->longText('detail')->nullable();
             $table->timestamps();
         });
     }

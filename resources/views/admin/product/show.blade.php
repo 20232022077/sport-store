@@ -74,6 +74,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="font-weight:600; color:#1e2a3b;">Detail</td>
+                    <td>{!! $data->detail !!}</td>
+                </tr>
+                <tr>
                     <td style="font-weight:600; color:#1e2a3b;">Created At</td>
                     <td>{{ $data->created_at }}</td>
                 </tr>

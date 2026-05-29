@@ -42,6 +42,7 @@ class ProductController extends Controller
         $data->minquantity  = $request->input('minquantity', 0);
         $data->tax          = $request->input('tax', 0);
         $data->status       = $request->input('status');
+        $data->detail       = $request->input('detail');
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
@@ -84,6 +85,7 @@ class ProductController extends Controller
         $data->minquantity  = $request->minquantity;
         $data->tax          = $request->tax;
         $data->status       = $request->status;
+        $data->detail       = $request->detail;
 
         if ($request->hasFile('image')) {
             if ($data->image) {

@@ -18,6 +18,7 @@ class Product extends Model
         'minquantity',
         'tax',
         'status',
+        'detail',
     ];
 
     public function category()

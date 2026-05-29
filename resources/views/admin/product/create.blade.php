@@ -4,6 +4,16 @@
 
 @section('page_title', 'Add Product')
 
+@section('head')
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+@endsection
+
+@section('footer')
+    <script>
+        CKEDITOR.replace('detail');
+    </script>
+@endsection
+
 @section('content')
 
     <div class="page-header">
@@ -93,6 +103,13 @@
                 <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Tax (%)</label>
                 <input type="number" step="0.01" name="tax" value="{{ old('tax', 0) }}"
                     style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none;">
+            </div>
+
+            {{-- Detail --}}
+            <div style="margin-bottom:18px;">
+                <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Detail</label>
+                <textarea name="detail" id="detail" rows="6"
+                    style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical;">{{ old('detail') }}</textarea>
             </div>
 
             {{-- Status --}}

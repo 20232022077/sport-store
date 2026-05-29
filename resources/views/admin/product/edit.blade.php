@@ -6,6 +6,18 @@
 
 @section('page_title', 'Edit Product')
 
+@section('head')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endsection
+
+@section('footer')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script>
+        $('#detail').summernote();
+    </script>
+@endsection
+
 @section('content')
 
     <div class="page-header">
@@ -87,6 +99,13 @@
                 <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Tax (%)</label>
                 <input type="number" step="0.01" name="tax" value="{{ $data->tax }}"
                     style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none;">
+            </div>
+
+            {{-- Detail --}}
+            <div style="margin-bottom:18px;">
+                <label style="display:block; font-weight:600; margin-bottom:6px; color:#1e2a3b;">Detail</label>
+                <textarea name="detail" id="detail" rows="6"
+                    style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical;">{!! $data->detail !!}</textarea>
             </div>
 
             {{-- Status --}}
