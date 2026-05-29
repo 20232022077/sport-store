@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\AdminHomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
 
@@ -14,6 +15,7 @@ Route::get('/category/{id}', [HomeController::class, 'category'])->name('categor
 Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categoryproducts'])->name('categoryproducts');
 Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
 Route::post('/storemessage', [HomeController::class, 'storemessage'])->name('storemessage');
+Route::post('/storecomment', [HomeController::class, 'storecomment'])->name('storecomment')->middleware('auth');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/references', [HomeController::class, 'references'])->name('references');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -39,6 +41,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/delete/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('comment')->name('comment.')->controller(CommentController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/approve/{id}', 'approve')->name('approve');
         Route::get('/delete/{id}', 'destroy')->name('delete');
     });
 

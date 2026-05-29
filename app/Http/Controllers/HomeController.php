@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Message;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -22,13 +24,37 @@ class HomeController extends Controller
 
     public function product($id)
     {
-        $data   = Product::find($id);
-        $images = DB::table('images')->where('product_id', $id)->get();
+        $data     = Product::find($id);
+        $images   = DB::table('images')->where('product_id', $id)->get();
+        $comments = Comment::where('product_id', $id)->where('status', 'approved')->with('user')->latest()->get();
 
         return view('home.product', [
-            'data'   => $data,
-            'images' => $images,
+            'data'     => $data,
+            'images'   => $images,
+            'comments' => $comments,
         ]);
+    }
+
+    public function storecomment(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required',
+            'subject'    => 'required|string|max:255',
+            'review'     => 'required|string',
+            'rate'       => 'required|integer|min:1|max:5',
+        ]);
+
+        $comment             = new Comment();
+        $comment->user_id    = Auth::id();
+        $comment->product_id = $request->product_id;
+        $comment->subject    = $request->subject;
+        $comment->review     = $request->review;
+        $comment->rate       = $request->rate;
+        $comment->ip_address = request()->ip();
+        $comment->status     = 'new';
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Your review has been submitted and is pending approval.');
     }
 
     public function categoryproducts($id, $slug)

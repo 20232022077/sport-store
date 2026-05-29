@@ -86,4 +86,103 @@
         </div>
     @endif
 
+    {{-- Comments Section --}}
+    <div style="margin-top:40px;">
+        <h3 class="section-title">Customer Reviews ({{ $comments->count() }})</h3>
+
+        {{-- Display Comments --}}
+        @forelse($comments as $comment)
+            <div style="background:#fff; border-radius:8px; padding:20px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <strong style="color:#1a1a2e;">{{ $comment->user->name ?? 'User' }}</strong>
+                    <span style="color:#f0a500; font-size:1rem;">
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= $comment->rate)
+                                <i class="fa-solid fa-star"></i>
+                            @else
+                                <i class="fa-regular fa-star"></i>
+                            @endif
+                        @endfor
+                    </span>
+                </div>
+                <p style="font-weight:600; color:#333; margin-bottom:6px;">{{ $comment->subject }}</p>
+                <p style="color:#666; font-size:0.92rem; line-height:1.6;">{{ $comment->review }}</p>
+                <small style="color:#aaa;">{{ $comment->created_at->format('Y-m-d') }}</small>
+            </div>
+        @empty
+            <p style="color:#888; padding:16px 0;">No reviews yet. Be the first to review!</p>
+        @endforelse
+
+        {{-- Comment Form --}}
+        <div style="background:#fff; border-radius:8px; padding:25px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-top:24px;">
+            <h4 style="color:#1a1a2e; margin-bottom:18px;">Write a Review</h4>
+
+            @auth
+                @if(session('success'))
+                    <div style="background:#eafaf1; border:1px solid #2ecc71; border-radius:6px; padding:12px; margin-bottom:16px; color:#27ae60; font-size:0.9rem;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div style="background:#fdedec; border:1px solid #e74c3c; border-radius:6px; padding:12px; margin-bottom:16px;">
+                        <ul style="margin:0; padding-left:18px; color:#e74c3c; font-size:0.9rem;">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('storecomment') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $data->id }}">
+
+                    <div style="margin-bottom:16px;">
+                        <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Rating</label>
+                        <div class="star-rating">
+                            @for($i = 5; $i >= 1; $i--)
+                                <input type="radio" name="rate" id="star{{ $i }}" value="{{ $i }}" {{ old('rate') == $i ? 'checked' : '' }}>
+                                <label for="star{{ $i }}" style="color:#ccc; font-size:1.4rem; cursor:pointer;"><i class="fa-solid fa-star"></i></label>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px;">
+                        <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Subject</label>
+                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Review subject"
+                            style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; box-sizing:border-box;">
+                    </div>
+
+                    <div style="margin-bottom:18px;">
+                        <label style="display:block; font-weight:600; margin-bottom:6px; color:#555; font-size:0.9rem;">Review</label>
+                        <textarea name="review" rows="4" placeholder="Share your experience..."
+                            style="width:100%; padding:10px 14px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; resize:vertical; box-sizing:border-box;">{{ old('review') }}</textarea>
+                    </div>
+
+                    <button type="submit"
+                        style="background:#f0a500; color:#1a1a2e; padding:11px 28px; border:none; border-radius:6px; font-weight:700; font-size:0.95rem; cursor:pointer;">
+                        Submit Review
+                    </button>
+                </form>
+            @else
+                <div style="background:#f8fafc; border-radius:6px; padding:20px; text-align:center; color:#666;">
+                    <i class="fa-solid fa-lock" style="font-size:1.5rem; color:#f0a500; margin-bottom:10px; display:block;"></i>
+                    Please <a href="{{ route('login') }}" style="color:#f0a500; font-weight:600;">login</a> to leave a review.
+                </div>
+            @endauth
+        </div>
+    </div>
+
+@endsection
+
+@section('scripts')
+<style>
+    .star-rating { display:flex; flex-direction:row-reverse; gap:4px; }
+    .star-rating input { display:none; }
+    .star-rating label { color:#ddd; font-size:1.5rem; cursor:pointer; transition:color 0.2s; }
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label { color:#f0a500; }
+</style>
 @endsection

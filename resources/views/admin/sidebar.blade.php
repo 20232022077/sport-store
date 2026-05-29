@@ -47,6 +47,13 @@
             </a>
         </div>
 
+        {{-- Comments --}}
+        <div class="menu-item {{ request()->routeIs('admin.comment.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.comment.index') }}">
+                <span class="icon"><i class="fa-solid fa-comments"></i></span> Comments
+            </a>
+        </div>
+
         {{-- Users --}}
         <div class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
             <a href="{{ route('admin.users.index') }}">

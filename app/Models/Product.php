@@ -30,4 +30,9 @@ class Product extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
