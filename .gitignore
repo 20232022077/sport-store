@@ -1,6 +1,6 @@
 *.log
 /.local-settings
-/.claude
+/.editor-cache
 .DS_Store
 .env
 .env.backup
