@@ -19,20 +19,30 @@ class MessageController extends Controller
     {
         $data = Message::find($id);
 
-        $data->status = 1;
-        $data->save();
+        if ($data->status == 0) {
+            $data->status = 1;
+            $data->save();
+        }
 
         return view('admin.message.show', ['data' => $data]);
+    }
+
+    public function edit($id)
+    {
+        $data = Message::find($id);
+
+        return view('admin.message.edit', ['data' => $data]);
     }
 
     public function update(Request $request, $id)
     {
         $data = Message::find($id);
 
-        $data->note = $request->note;
+        $data->status     = $request->status;
+        $data->admin_note = $request->admin_note;
         $data->save();
 
-        return redirect()->route('admin.message.show', $id)->with('success', 'Note saved successfully.');
+        return redirect()->route('admin.message.show', $id)->with('success', 'Message updated successfully.');
     }
 
     public function destroy($id)

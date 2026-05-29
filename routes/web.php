@@ -42,9 +42,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/delete/{id}', 'destroy')->name('delete');
     });
 
-    Route::prefix('message')->name('message.')->controller(MessageController::class)->group(function () {
+    Route::prefix('message')->name('message.')->controller(MessageController::class)->middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'destroy')->name('delete');
     });

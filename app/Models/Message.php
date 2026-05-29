@@ -15,7 +15,7 @@ class Message extends Model
         'subject',
         'message',
         'ip_address',
-        'note',
+        'admin_note',
         'status',
     ];
 }
