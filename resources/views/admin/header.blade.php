@@ -12,10 +12,9 @@
             <span>{{ auth()->user()->name ?? 'Admin' }}</span>
         </div>
 
-        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-            @csrf
-            <button type="submit" class="btn-logout">Logout</button>
-        </form>
+        <a href="{{ route('admin.logoutadmin') }}" class="btn-logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
     </div>
 
 </header>
