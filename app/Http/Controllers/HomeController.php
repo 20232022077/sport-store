@@ -15,9 +15,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $productslider = Product::limit(5)->get();
-        $productlist1  = Product::limit(6)->get();
-        $page          = 'home';
+        $productslider = Product::withCount(['comments' => fn($q) => $q->where('status', 'approved')])
+                                ->withAvg(['comments' => fn($q) => $q->where('status', 'approved')], 'rate')
+                                ->limit(5)->get();
+
+        $productlist1  = Product::withCount(['comments' => fn($q) => $q->where('status', 'approved')])
+                                ->withAvg(['comments' => fn($q) => $q->where('status', 'approved')], 'rate')
+                                ->limit(6)->get();
+        $page = 'home';
 
         return view('index', compact('productslider', 'productlist1', 'page'));
     }
@@ -28,10 +33,15 @@ class HomeController extends Controller
         $images   = DB::table('images')->where('product_id', $id)->get();
         $comments = Comment::where('product_id', $id)->where('status', 'approved')->with('user')->latest()->get();
 
+        $avgRate     = round($comments->avg('rate'), 1);
+        $reviewCount = $comments->count();
+
         return view('home.product', [
-            'data'     => $data,
-            'images'   => $images,
-            'comments' => $comments,
+            'data'        => $data,
+            'images'      => $images,
+            'comments'    => $comments,
+            'avgRate'     => $avgRate,
+            'reviewCount' => $reviewCount,
         ]);
     }
 
@@ -60,7 +70,10 @@ class HomeController extends Controller
     public function categoryproducts($id, $slug)
     {
         $category = Category::find($id);
-        $products = Product::where('category_id', $id)->get();
+        $products = Product::where('category_id', $id)
+                           ->withCount(['comments' => fn($q) => $q->where('status', 'approved')])
+                           ->withAvg(['comments' => fn($q) => $q->where('status', 'approved')], 'rate')
+                           ->get();
 
         return view('home.category_products', [
             'category' => $category,
@@ -71,7 +84,10 @@ class HomeController extends Controller
     public function category($id)
     {
         $category = Category::find($id);
-        $products = Product::where('category_id', $id)->where('status', 1)->get();
+        $products = Product::where('category_id', $id)->where('status', 1)
+                           ->withCount(['comments' => fn($q) => $q->where('status', 'approved')])
+                           ->withAvg(['comments' => fn($q) => $q->where('status', 'approved')], 'rate')
+                           ->get();
 
         return view('home.category', [
             'category' => $category,

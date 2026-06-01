@@ -48,6 +48,18 @@
         <div class="product-info">
             <h1 class="product-title">{{ $data->title }}</h1>
 
+            <div class="product-rating">
+                @for($i = 1; $i <= 5; $i++)
+                    @if($i <= round($avgRate))
+                        <i class="fa-solid fa-star"></i>
+                    @else
+                        <i class="fa-regular fa-star"></i>
+                    @endif
+                @endfor
+                <span class="avg-text">{{ number_format($avgRate, 1) }} / 5</span>
+                <span class="count-text">({{ $reviewCount }} {{ $reviewCount == 1 ? 'Review' : 'Reviews' }})</span>
+            </div>
+
             <div class="product-price">
                 <span class="price-current">${{ number_format($data->price, 2) }}</span>
                 <span class="price-old">${{ number_format($data->price * 1.10, 2) }}</span>

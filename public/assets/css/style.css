@@ -221,6 +221,17 @@ a { text-decoration: none; color: inherit; }
     font-size: 1.1rem;
 }
 
+/* ===== RATING STARS ===== */
+.rating-stars { display:flex; align-items:center; gap:4px; margin:6px 0; flex-wrap:wrap; justify-content:center; }
+.rating-stars i { color:#f0a500; font-size:0.85rem; }
+.rating-info { font-size:0.8rem; color:#888; margin-left:4px; }
+.rating-count { color:#aaa; }
+
+.product-rating { display:flex; align-items:center; gap:6px; margin-bottom:14px; }
+.product-rating i { color:#f0a500; font-size:1.1rem; }
+.product-rating .avg-text { font-size:0.95rem; color:#555; font-weight:600; }
+.product-rating .count-text { font-size:0.85rem; color:#aaa; }
+
 /* ===== BREADCRUMB ===== */
 .breadcrumb {
     font-size: 0.9rem;

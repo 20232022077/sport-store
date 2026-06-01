@@ -26,6 +26,7 @@
                     @endif
                     <h4>{{ $rs->title }}</h4>
                     <p>{{ $rs->category ? $rs->category->title : '' }}</p>
+                    @include('home.stars', ['avg' => $rs->comments_avg_rate, 'count' => $rs->comments_count])
                     <div class="price">
                         ${{ number_format($rs->price, 2) }}
                         <span style="text-decoration:line-through; color:#aaa; font-size:0.85rem; margin-left:6px; font-weight:400;">

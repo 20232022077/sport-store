@@ -28,6 +28,7 @@
                         <div class="icon"><i class="fa-solid fa-box"></i></div>
                     @endif
                     <h4>{{ $rs->title }}</h4>
+                    @include('home.stars', ['avg' => $rs->comments_avg_rate, 'count' => $rs->comments_count])
                     <div class="price">${{ number_format($rs->price, 2) }}</div>
                 </div>
                 </a>

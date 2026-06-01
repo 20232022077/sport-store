@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function approvedComments()
+    {
+        return $this->hasMany(Comment::class)->where('status', 'approved');
+    }
 }
