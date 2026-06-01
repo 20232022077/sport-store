@@ -10,6 +10,14 @@
 
     <div class="auth-links">
         @auth
+            <a href="{{ route('cart') }}" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                @if($cartCount > 0)
+                    <span class="cart-count">{{ $cartCount }}</span>
+                @endif
+            </a>
+        @endauth
+        @auth
             <div class="user-menu">
                 <span class="user-greeting">
                     <i class="fa-solid fa-circle-user"></i> {{ Auth::user()->name }}

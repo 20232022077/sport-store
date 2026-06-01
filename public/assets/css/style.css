@@ -53,6 +53,40 @@ a { text-decoration: none; color: inherit; }
 
 .header .auth-links a:hover { background: #d4920a; }
 
+/* ===== CART ICON ===== */
+.cart-icon {
+    position: relative;
+    background: #f0a500;
+    color: #1a1a2e;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 8px;
+    transition: background 0.2s;
+}
+
+.cart-icon:hover { background: #d4920a; }
+
+.cart-count {
+    background: #dc3545;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}
+
 /* ===== USER MENU ===== */
 .user-menu { position: relative; display: inline-block; }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -21,6 +22,15 @@ Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categorypro
 Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
 Route::post('/storemessage', [HomeController::class, 'storemessage'])->name('storemessage');
 Route::post('/storecomment', [HomeController::class, 'storecomment'])->name('storecomment')->middleware('auth');
+
+// Cart Routes
+Route::middleware('auth')->group(function () {
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'cartList'])->name('cart');
+    Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::get('/cart/delete/{id}', [CartController::class, 'deleteCartItem'])->name('cart.delete');
+    Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+});
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/references', [HomeController::class, 'references'])->name('references');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

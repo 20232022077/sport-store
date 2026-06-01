@@ -84,6 +84,29 @@
             <div class="product-description">
                 {{ $data->description }}
             </div>
+
+            {{-- Add to Cart --}}
+            @if($data->quantity > 0)
+                @auth
+                    <form action="{{ route('cart.add') }}" method="POST" style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $data->id }}">
+                        <input type="number" name="quantity" value="1" min="1" max="{{ $data->quantity }}"
+                            style="width:70px; padding:10px; border:1px solid #dde3ec; border-radius:6px; font-size:0.95rem; outline:none; text-align:center;">
+                        <button type="submit"
+                            style="background:#f0a500; color:#1a1a2e; padding:11px 28px; border:none; border-radius:6px; font-weight:700; font-size:0.95rem; cursor:pointer;">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                        </button>
+                    </form>
+                @else
+                    <div style="margin-top:20px;">
+                        <a href="{{ route('login') }}"
+                           style="background:#f0a500; color:#1a1a2e; padding:11px 28px; border-radius:6px; font-weight:700; font-size:0.95rem; display:inline-block;">
+                            <i class="fa-solid fa-right-to-bracket"></i> Login to Add to Cart
+                        </a>
+                    </div>
+                @endauth
+            @endif
         </div>
 
     </div>
