@@ -25,6 +25,7 @@ Route::post('/storecomment', [HomeController::class, 'storecomment'])->name('sto
 
 // Cart Routes
 Route::middleware('auth')->group(function () {
+    Route::get('/shopcart/add/{id}', [CartController::class, 'add'])->name('shopcart.add');
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'cartList'])->name('cart');
     Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');

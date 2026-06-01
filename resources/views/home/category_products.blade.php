@@ -20,8 +20,8 @@
     @else
         <div class="cards-grid">
             @foreach($products as $rs)
-                <a href="{{ route('product', ['id' => $rs->id]) }}" style="text-decoration:none; color:inherit;">
                 <div class="card">
+                    <a href="{{ route('product', ['id' => $rs->id]) }}" style="text-decoration:none; color:inherit;">
                     @if($rs->image)
                         <img src="{{ Storage::url($rs->image) }}" alt="{{ $rs->title }}" class="card-img">
                     @else
@@ -30,8 +30,13 @@
                     <h4>{{ $rs->title }}</h4>
                     @include('home.stars', ['avg' => $rs->comments_avg_rate, 'count' => $rs->comments_count])
                     <div class="price">${{ number_format($rs->price, 2) }}</div>
+                    </a>
+                    @auth
+                    <a href="{{ route('shopcart.add', $rs->id) }}" class="quick-add-btn">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </a>
+                    @endauth
                 </div>
-                </a>
             @endforeach
         </div>
     @endif

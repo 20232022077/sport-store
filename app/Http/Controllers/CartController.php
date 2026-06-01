@@ -8,6 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    public function add($id)
+    {
+        $existing = ShopCart::where('user_id', Auth::id())
+                            ->where('product_id', $id)
+                            ->first();
+
+        if ($existing) {
+            $existing->quantity += 1;
+            $existing->save();
+        } else {
+            $cart             = new ShopCart();
+            $cart->user_id    = Auth::id();
+            $cart->product_id = $id;
+            $cart->quantity   = 1;
+            $cart->save();
+        }
+
+        return redirect()->back()->with('success', 'Product added to cart.');
+    }
+
     public function addToCart(Request $request)
     {
         if (!Auth::check()) {

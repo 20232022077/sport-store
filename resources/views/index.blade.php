@@ -17,8 +17,8 @@
     @else
         <div class="cards-grid">
             @foreach($productlist1 as $rs)
-                <a href="{{ route('product', ['id' => $rs->id]) }}" style="text-decoration:none; color:inherit;">
                 <div class="card">
+                    <a href="{{ route('product', ['id' => $rs->id]) }}" style="text-decoration:none; color:inherit;">
                     @if($rs->image)
                         <img src="{{ Storage::url($rs->image) }}" alt="{{ $rs->title }}" class="card-img">
                     @else
@@ -33,8 +33,13 @@
                             ${{ number_format($rs->price * 1.10, 2) }}
                         </span>
                     </div>
+                    </a>
+                    @auth
+                    <a href="{{ route('shopcart.add', $rs->id) }}" class="quick-add-btn">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </a>
+                    @endauth
                 </div>
-                </a>
             @endforeach
         </div>
     @endif

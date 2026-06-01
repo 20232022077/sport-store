@@ -53,6 +53,22 @@ a { text-decoration: none; color: inherit; }
 
 .header .auth-links a:hover { background: #d4920a; }
 
+/* ===== QUICK ADD BUTTON ===== */
+.quick-add-btn {
+    display: block;
+    margin-top: 10px;
+    background: #f0a500;
+    color: #1a1a2e;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.quick-add-btn:hover { background: #d4920a; color: #1a1a2e; }
+
 /* ===== CART ICON ===== */
 .cart-icon {
     position: relative;
