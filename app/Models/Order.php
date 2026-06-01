@@ -14,6 +14,7 @@ class Order extends Model
         'phone',
         'email',
         'status',
+        'admin_note',
     ];
 
     public function user()

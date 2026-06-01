@@ -34,8 +34,8 @@
         <div class="menu-label">Sales</div>
 
         {{-- Orders --}}
-        <div class="menu-item">
-            <a href="#">
+        <div class="menu-item {{ request()->routeIs('admin.order.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.order.index') }}">
                 <span class="icon"><i class="fa-solid fa-cart-shopping"></i></span> Orders
             </a>
         </div>

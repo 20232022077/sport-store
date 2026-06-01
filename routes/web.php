@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminPanel\AdminHomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MessageController;
@@ -83,6 +84,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::get('/show/{id}', 'show')->name('show');
         Route::post('/addrole/{id}', 'addrole')->name('addrole');
         Route::get('/deleterole/{user_id}/{role_id}', 'deleterole')->name('deleterole');
+    });
+
+    Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/status/{id}', 'updateStatus')->name('status');
+        Route::post('/note/{id}', 'updateNote')->name('note');
     });
 
     Route::prefix('comment')->name('comment.')->controller(CommentController::class)->group(function () {
