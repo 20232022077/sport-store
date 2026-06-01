@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\AdminPanel\AdminHomeController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -42,9 +43,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // Admin Protected Routes
-Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.index')->middleware('admin');
+Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.index')->middleware(['auth', 'admin']);
 
-Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::prefix('category')->name('category.')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -100,6 +101,15 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         Route::get('/delete/{id}', 'destroy')->name('delete');
     });
 
+});
+
+// User Panel Routes
+Route::prefix('userpanel')->name('userpanel.')->middleware('auth')->controller(UserPanelController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/profile', 'profile')->name('profile');
+    Route::get('/reviews', 'reviews')->name('reviews');
+    Route::get('/orders', 'orders')->name('orders');
+    Route::get('/products', 'products')->name('products');
 });
 
 // Placeholder routes

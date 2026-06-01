@@ -15,8 +15,10 @@
                     <i class="fa-solid fa-circle-user"></i> {{ Auth::user()->name }}
                 </span>
                 <div class="user-dropdown">
-                    <a href="{{ url('/user/profile') }}"><i class="fa-solid fa-user"></i> My Profile</a>
-                    <a href="#"><i class="fa-solid fa-box"></i> My Orders</a>
+                    <a href="{{ route('userpanel.index') }}"><i class="fa-solid fa-gauge"></i> My Account</a>
+                    <a href="{{ route('userpanel.profile') }}"><i class="fa-solid fa-user"></i> My Profile</a>
+                    <a href="{{ route('userpanel.reviews') }}"><i class="fa-solid fa-star"></i> My Reviews</a>
+                    <a href="{{ route('userpanel.orders') }}"><i class="fa-solid fa-bag-shopping"></i> My Orders</a>
                     <a href="{{ route('logoutuser') }}" style="color:#e74c3c;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </div>
             </div>
