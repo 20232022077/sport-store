@@ -24,6 +24,19 @@ class UserPanelController extends Controller
         return view('userpanel.reviews', ['reviews' => $reviews]);
     }
 
+    public function deletereview($id)
+    {
+        $review = Comment::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$review) {
+            return redirect()->route('userpanel.reviews')->with('error', 'Review not found or access denied.');
+        }
+
+        $review->delete();
+
+        return redirect()->route('userpanel.reviews')->with('success', 'Review deleted successfully.');
+    }
+
     public function orders()
     {
         return view('userpanel.orders');

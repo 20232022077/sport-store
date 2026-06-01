@@ -108,6 +108,7 @@ Route::prefix('userpanel')->name('userpanel.')->middleware('auth')->controller(U
     Route::get('/', 'index')->name('index');
     Route::get('/profile', 'profile')->name('profile');
     Route::get('/reviews', 'reviews')->name('reviews');
+    Route::get('/reviews/delete/{id}', 'deletereview')->name('deletereview');
     Route::get('/orders', 'orders')->name('orders');
     Route::get('/products', 'products')->name('products');
 });
