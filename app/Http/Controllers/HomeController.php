@@ -10,6 +10,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -133,6 +134,15 @@ class HomeController extends Controller
     {
         $setting = Setting::first();
         return view('home.contact', compact('setting'));
+    }
+
+    public function logoutuser()
+    {
+        Auth::logout();
+        Session::flush();
+        Session::regenerateToken();
+
+        return redirect('/');
     }
 
     public function test($id, $number)

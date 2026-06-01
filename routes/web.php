@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/logoutuser', [HomeController::class, 'logoutuser'])->name('logoutuser')->middleware('auth');
 
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('category.products');
 Route::get('/categoryproducts/{id}/{slug}', [HomeController::class, 'categoryproducts'])->name('categoryproducts');
