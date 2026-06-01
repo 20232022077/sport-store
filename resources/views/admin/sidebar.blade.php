@@ -55,18 +55,25 @@
         </div>
 
         {{-- Users --}}
-        <div class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.users.index') }}">
+        <div class="menu-item {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.user.index') }}">
                 <span class="icon"><i class="fa-solid fa-users"></i></span> Users
             </a>
         </div>
 
         <div class="menu-label">System</div>
 
+        {{-- Roles --}}
+        <div class="menu-item {{ request()->routeIs('admin.role.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.role.index') }}">
+                <span class="icon"><i class="fa-solid fa-user-shield"></i></span> Roles
+            </a>
+        </div>
+
         {{-- Roles & Permissions Dropdown --}}
         <div class="menu-item has-dropdown {{ request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') ? 'menu-open active' : '' }}">
             <a href="#">
-                <span class="icon"><i class="fa-solid fa-user-shield"></i></span>
+                <span class="icon"><i class="fa-solid fa-key"></i></span>
                 Roles & Permissions
                 <i class="fa-solid fa-angle-left dropdown-arrow"></i>
             </a>

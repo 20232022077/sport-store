@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminPanel\AdminHomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
 
@@ -52,6 +54,20 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/delete/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('role')->name('role.')->controller(RoleController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/delete/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/addrole/{id}', 'addrole')->name('addrole');
+        Route::get('/deleterole/{user_id}/{role_id}', 'deleterole')->name('deleterole');
     });
 
     Route::prefix('comment')->name('comment.')->controller(CommentController::class)->group(function () {
