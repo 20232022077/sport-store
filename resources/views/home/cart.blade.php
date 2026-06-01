@@ -108,7 +108,7 @@
                     <span style="color:#f0a500;">${{ number_format($total, 2) }}</span>
                 </div>
 
-                <a href="#" style="display:block; background:#f0a500; color:#1a1a2e; text-align:center; padding:12px; border-radius:6px; font-weight:700; margin-top:20px; font-size:0.95rem;">
+                <a href="{{ route('checkout') }}" style="display:block; background:#f0a500; color:#1a1a2e; text-align:center; padding:12px; border-radius:6px; font-weight:700; margin-top:20px; font-size:0.95rem;">
                     Proceed to Checkout
                 </a>
 

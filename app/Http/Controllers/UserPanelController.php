@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class UserPanelController extends Controller
@@ -39,7 +40,20 @@ class UserPanelController extends Controller
 
     public function orders()
     {
-        return view('userpanel.orders');
+        $orders = Order::where('user_id', Auth::id())->latest()->get();
+
+        return view('userpanel.orders', ['orders' => $orders]);
+    }
+
+    public function orderdetail($id)
+    {
+        $order = Order::where('id', $id)->where('user_id', Auth::id())->with('items.product')->first();
+
+        if (!$order) {
+            return redirect()->route('userpanel.orders');
+        }
+
+        return view('userpanel.orderdetail', ['order' => $order]);
     }
 
     public function products()

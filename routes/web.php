@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
     Route::get('/cart/delete/{id}', [CartController::class, 'deleteCartItem'])->name('cart.delete');
     Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/place', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
 });
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/references', [HomeController::class, 'references'])->name('references');
@@ -121,6 +124,7 @@ Route::prefix('userpanel')->name('userpanel.')->middleware('auth')->controller(U
     Route::get('/reviews', 'reviews')->name('reviews');
     Route::get('/reviews/delete/{id}', 'deletereview')->name('deletereview');
     Route::get('/orders', 'orders')->name('orders');
+    Route::get('/orders/{id}', 'orderdetail')->name('orderdetail');
     Route::get('/products', 'products')->name('products');
 });
 
